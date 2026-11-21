@@ -18,11 +18,16 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Environment
-# The repo root ignores every .env*; only .env.example is committed. Copy it to .env (or
-# .env.development / .env.production / *.local) on each machine.
+# Environment: only .env.example is committed. Copy it to .env (or .env.development /
+# .env.production / *.local) on each machine.
+.env*
 !.env.example
 *.local
+
+# deploy/update.sh state on the server
+deploy/.deployed-commit
+deploy/.update.lock
+deploy/update.log*
 
 # Editors
 .vscode/*

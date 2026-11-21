@@ -1,0 +1,26 @@
+# The public site as one container on an existing Docker network shared with the reverse
+# proxy (PROXY_NETWORK, default "proxy"), reachable there as public-web:80. No ports.
+# Settings come from .env, see deploy/README.md.
+
+name: masjid-public
+
+services:
+  web:
+    image: masjid-public:latest
+    build:
+      context: .
+      args:
+        VITE_DEMO_URL: ${VITE_DEMO_URL:-}
+        VITE_DEMO_TV_URL: ${VITE_DEMO_TV_URL:-}
+        VITE_INQUIRY_URL: ${VITE_INQUIRY_URL:-}
+    restart: unless-stopped
+    environment:
+      API_UPSTREAM: ${API_UPSTREAM:?set API_UPSTREAM in .env, e.g. demo-web:80}
+    networks:
+      proxy:
+        aliases: [public-web]
+
+networks:
+  proxy:
+    name: ${PROXY_NETWORK:-proxy}
+    external: true

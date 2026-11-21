@@ -1,8 +1,8 @@
-# web_public
+# masjid-digital-public
 
-The public site for Masjid Digital: what the product does, its documentation, and links to the
-live demo. Separate from `web/` (the admin panel and TV display) so it can be hosted on its own,
-e.g. on a static host in front of the app's domain.
+The public site for Masjid Digital: what the product does, its documentation, links to the live
+demo and the "Daftar" form. The app itself (Go API, admin panel and TV display) lives in the
+masjid-digital repository; this site only needs its API for the form.
 
 - `/` (`index.html`): the product page. The hero's TV switches between the real screenshots of
   each mode; the admin panel is shown as its phone screens.
@@ -47,20 +47,24 @@ Every visitor who opens the TV demo registers as a new screen on the demo server
 ## Daftar form
 
 The "Daftar" section (`#daftar`) posts to the API's `POST /api/public/v1/inquiries`, which sends it
-to the team's Telegram (see the root README, `app.inquiry`). By default it posts to that path on
+to the team's Telegram (see `app.inquiry` in the masjid-digital README). By default it posts to that path on
 the site's own origin, so whatever serves the site must forward `/api/*` to the API: the dev
 server does (to `VITE_API_PROXY_TARGET`, default `http://localhost:3000`), and in production the
-web server in front must. `VITE_INQUIRY_URL` points it elsewhere, which then needs CORS on the API.
+Caddy in the image does, for that one route, to `API_UPSTREAM` (see [deploy/README.md](deploy/README.md)).
+`VITE_INQUIRY_URL` points it elsewhere, which then needs CORS on the API.
 
 ## Screenshots
 
-The images are the ones the repo README shows, in `../docs/screenshots`. They are not copied
-here: `vite.config.ts` serves them at `/screenshots/` in dev and writes them to
-`dist/screenshots/` in the build. Retake a screenshot there and both the README and the site
-update.
+`public/screenshots/` holds the app's screenshots, served at `/screenshots/`. They are copies of
+the ones in the masjid-digital README (`docs/screenshots/`): retake one there, copy it here.
+
+## Deploy
+
+A Docker image (Vite build served by Caddy), deployed from a clone of this repo by a cron job:
+see [deploy/README.md](deploy/README.md).
 
 ## Copy
 
 All visible text is Bahasa Indonesia, like the app. Describe only what the app does today; a
 feature that is not built yet is labelled "segera hadir". Keep the docs in step with
-`docs/product/prd.md` and the root README when a feature changes.
+`docs/product/prd.md` and the README in masjid-digital when a feature changes.

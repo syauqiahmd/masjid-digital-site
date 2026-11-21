@@ -1,0 +1,33 @@
+# The public site on port 80. TLS is left to the proxy in front.
+
+{
+	servers {
+		# keep the X-Forwarded-For of the proxy in front (on a private network), so the API's
+		# rate limit on the Daftar form sees the visitor's IP instead of that proxy's
+		trusted_proxies static private_ranges
+	}
+}
+
+:80 {
+	encode zstd gzip
+
+	# the Daftar form: the only API route served here, forwarded to a masjid-digital backend
+	# (API_UPSTREAM, e.g. a mosque's web container, which passes /api/* on to its API)
+	handle /api/public/v1/inquiries {
+		reverse_proxy {$API_UPSTREAM}
+	}
+
+	handle {
+		root * /srv
+
+		# hashed by Vite, so they never change under the same name
+		@assets path /assets/*
+		header @assets Cache-Control "public, max-age=31536000, immutable"
+
+		# pages must be fetched fresh to pick up a new release
+		@html path / /index.html /docs /docs/ /docs/index.html
+		header @html Cache-Control "no-cache"
+
+		file_server
+	}
+}

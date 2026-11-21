@@ -1,0 +1,9 @@
+.git
+node_modules
+dist
+coverage
+.env*
+!.env.example
+deploy/.deployed-commit
+deploy/.update.lock
+deploy/update.log*
