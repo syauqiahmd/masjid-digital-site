@@ -67,6 +67,7 @@ change is pushed; otherwise the API starts without its settings and the form ans
    TRANSPARENCY_VM_NAMES=masjidyuk
    TRANSPARENCY_EXTRA_DEPOSIT=0
    VITE_DEMO_URL=https://test.masjidyuk.com
+   VITE_GOOGLE_SITE_VERIFICATION=... # Search Console's HTML tag, optional
    VITE_DEMO_PHONE=...               # a demo account: every visitor sees it
    VITE_DEMO_PASSWORD=...
    ```
