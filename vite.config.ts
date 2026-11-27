@@ -22,10 +22,10 @@ export default defineConfig(({ mode }) => ({
   server: {
     port: 5174,
     strictPort: true,
-    // the inquiry form posts to /api on the same origin, so in dev it reaches the Go backend
+    // the form and the server bersama numbers use /api on the same origin; in dev that is server/
     proxy: {
       '/api': {
-        target: loadEnv(mode, process.cwd(), '').VITE_API_PROXY_TARGET || 'http://localhost:3000',
+        target: loadEnv(mode, process.cwd(), '').VITE_API_PROXY_TARGET || 'http://localhost:8080',
         changeOrigin: true,
       },
     },

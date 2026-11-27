@@ -10,7 +10,10 @@ COPY . ./
 # baked into the pages at build time (see .env.example); empty hides the demo
 ARG VITE_DEMO_URL
 ARG VITE_DEMO_TV_URL
+ARG VITE_DEMO_PHONE
+ARG VITE_DEMO_PASSWORD
 ARG VITE_INQUIRY_URL
+ARG VITE_TRANSPARENCY_URL
 RUN npm run build
 
 FROM caddy:2-alpine

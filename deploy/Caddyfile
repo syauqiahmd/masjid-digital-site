@@ -11,9 +11,9 @@
 :80 {
 	encode zstd gzip
 
-	# the Daftar form: the only API route served here, forwarded to a masjid-digital backend
-	# (API_UPSTREAM, e.g. a mosque's web container, which passes /api/* on to its API)
-	handle /api/public/v1/inquiries {
+	# the site's own API (server/): the Daftar form and the "server bersama" numbers. API_UPSTREAM
+	# is the api container of this stack (api:8080, set by docker-compose.yml).
+	handle /api/* {
 		reverse_proxy {$API_UPSTREAM}
 	}
 

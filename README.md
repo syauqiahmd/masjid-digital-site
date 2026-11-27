@@ -1,8 +1,9 @@
 # masjid-digital-public
 
-The public site for Masjid Digital: what the product does, its documentation, links to the live
-demo and the "Daftar" form. The app itself (Go API, admin panel and TV display) lives in the
-masjid-digital repository; this site only needs its API for the form.
+The public site for Masjid Digital: what the product does, its documentation, the live demo, the
+plans, the shared server's numbers and the "Daftar" form. The app itself (admin panel and TV
+display) lives in the masjid-digital repository. The site has its own small Go API in `server/`
+for the form and the shared server's numbers.
 
 - `/` (`index.html`): the product page. The hero's TV switches between the real screenshots of
   each mode; the admin panel is shown as its phone screens.
@@ -35,23 +36,63 @@ are fixed (`strictPort`), so neither shifts onto the other. The values are baked
 time, so rebuild after changing them. Without JavaScript the
 buttons open the documentation instead.
 
-The "Coba demo" section runs the demo inside the page: the admin panel in a 390 px phone frame
-(on a computer; on a phone it shows a button to open the panel instead) and the TV in a 16:9
-frame. Each frame only loads once its option is picked and scrolled into view. For this to work
-the demo host must allow being framed by this site: send no `X-Frame-Options`, or a
+The "Coba demo" section runs the demo inside the page, side by side: the admin panel in a 390 px
+phone frame (on a computer; on a phone a button opens it instead) and the TV in a 16:9 frame, so a
+change saved on one shows on the other. Nothing loads until the visitor clicks "Mulai demo". For
+this to work the demo host must allow being framed by this site: send no `X-Frame-Options`, or a
 `Content-Security-Policy: frame-ancestors` that lists the public site's domain.
+
+`VITE_DEMO_PHONE` and `VITE_DEMO_PASSWORD` show the demo's login, with copy buttons, once the demo
+starts: the panel runs on the demo's own domain, so the page cannot fill its form. Every visitor
+sees them, so use an account made for the demo.
 
 Every visitor who opens the TV demo registers as a new screen on the demo server (BARU, at most
 50). Reset the demo's data now and then, e.g. nightly.
 
-## Daftar form
+## The API (`server/`)
 
-The "Daftar" section (`#daftar`) posts to the API's `POST /api/public/v1/inquiries`, which sends it
-to the team's Telegram (see `app.inquiry` in the masjid-digital README). By default it posts to that path on
-the site's own origin, so whatever serves the site must forward `/api/*` to the API: the dev
-server does (to `VITE_API_PROXY_TARGET`, default `http://localhost:3000`), and in production the
-Caddy in the image does, for that one route, to `API_UPSTREAM` (see [deploy/README.md](deploy/README.md)).
-`VITE_INQUIRY_URL` points it elsewhere, which then needs CORS on the API.
+A Go service with two public routes, which the page calls on its own origin:
+
+| Route                             | What it does                                                                                                                                                                         |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `POST /api/public/v1/inquiries`   | the Daftar form (`#daftar`): validated, rate limited (5 per visitor then one per 10 minutes, 30 in total then one per 2 minutes) and sent to the team's Telegram. Nothing is stored. |
+| `GET /api/public/v1/transparency` | the "server bersama" numbers (`#transparansi`): credit and running cost of the shared server's IDCloudHost billing account. Cached for an hour.                                      |
+
+Each answers 503 until its settings are filled in, and the page then shows a short note instead.
+Layout follows clean architecture: `domain` (rules), `usecase` (application, against the
+interfaces in `usecase/interface.go`), `repository` (Telegram, IDCloudHost), `delivery/http`
+(router, controllers, rate limit), and `cmd/http` (`main.go` runs the server, `wire.go` builds the
+dependencies).
+
+```sh
+cd server
+cp .env.example .env   # development settings; read from the working directory
+go run ./cmd/http      # http://localhost:8080, the Vite dev server forwards /api here
+go test ./...
+```
+
+In production `docker compose` runs it as the `api` container with the repo root's `.env` as its
+environment, and the site's Caddy forwards `/api/*` to it (see [deploy/README.md](deploy/README.md)).
+`VITE_INQUIRY_URL` and `VITE_TRANSPARENCY_URL` point the page elsewhere, which then needs CORS.
+
+### The shared server's numbers
+
+- **Saldo deposit**: `running_totals.ongoing` of the billing account
+  (`GET /v1/payment/billing_account`), the credit left after this month's charges so far
+  (`credit_available` is the credit before them), plus `TRANSPARENCY_EXTRA_DEPOSIT`, money held for
+  the server but not topped up yet.
+- **Biaya server / bulan**: the hourly `price` of each resource billed this month
+  (`GET /v1/charging/usage`: the VM, its disk, each backup replica) for the VMs in
+  `TRANSPARENCY_VM_NAMES` (all when empty), times the hours in the month, VAT added. IDCloudHost's
+  own "Est. monthly cost" is the same figure before VAT. One-off products (`price_unit` `pc`) do
+  not count.
+- **Aman sampai**: today plus deposit ÷ the monthly cost _before_ VAT, since IDCloudHost charges
+  the VAT when credit is topped up, not when it is used.
+
+IDCloudHost has no read-only API key: the key can also create or delete servers and pay invoices,
+so it only lives in the server's `.env`. The credit belongs to the whole billing account: if the
+account also pays for other projects, its credit counts toward the deposit too. A billing account
+of its own for the shared server keeps the numbers exact.
 
 ## Screenshots
 

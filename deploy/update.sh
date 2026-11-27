@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Run by cron on the server, from a clone of this repo: when origin/main moved, fast-forwards
-# the clone, rebuilds the image and restarts the site. deploy/.deployed-commit only moves after
+# the clone, rebuilds the images and restarts the site and its API. deploy/.deployed-commit only moves after
 # a healthy deploy, so a failed run is retried next time. See deploy/README.md.
 #
 #   DOCKER="sudo -n docker" PROXY_CONTAINER=masjid-proxy-caddy-1 deploy/update.sh
@@ -36,22 +36,32 @@ git -C "$REPO" merge --ff-only --quiet origin/main
 log "building ${target:0:7} (deployed: ${deployed:0:7})"
 
 cd "$REPO"
-previous="$("${DOCKER[@]}" image inspect -f '{{.Id}}' masjid-public:latest 2>/dev/null || true)"
-"${DOCKER[@]}" compose build --quiet web
-"${DOCKER[@]}" compose up -d web
+image_id() { "${DOCKER[@]}" image inspect -f '{{.Id}}' "$1" 2>/dev/null || true; }
+previous_web="$(image_id masjid-public:latest)"
+previous_api="$(image_id masjid-public-api:latest)"
+"${DOCKER[@]}" compose build --quiet web api
+"${DOCKER[@]}" compose up -d web api
 
+# the proxy must reach the pages, and the pages' Caddy must reach the API
 healthy=
 for _ in $(seq 15); do
-	if "${DOCKER[@]}" exec "$PROXY_CONTAINER" wget -q -O /dev/null http://public-web/; then healthy=1; break; fi
+	if "${DOCKER[@]}" exec "$PROXY_CONTAINER" wget -q -O /dev/null http://public-web/ &&
+		"${DOCKER[@]}" compose exec -T web wget -q -O /dev/null http://api:8080/healthz; then
+		healthy=1
+		break
+	fi
 	sleep 2
 done
-[[ -n "$healthy" ]] || { log "site did not answer after deploy"; exit 1; }
+[[ -n "$healthy" ]] || { log "site or API did not answer after deploy"; exit 1; }
 
 echo "$target" >"$STATE"
-current="$("${DOCKER[@]}" image inspect -f '{{.Id}}' masjid-public:latest)"
-if [[ -n "$previous" && "$previous" != "$current" ]]; then
-	"${DOCKER[@]}" image rm "$previous" >/dev/null 2>&1 || true
-fi
+# image first: a first deploy has no previous id, which read would otherwise shift
+for pair in "masjid-public:latest $previous_web" "masjid-public-api:latest $previous_api"; do
+	read -r image previous <<<"$pair"
+	if [[ -n "$previous" && "$previous" != "$(image_id "$image")" ]]; then
+		"${DOCKER[@]}" image rm "$previous" >/dev/null 2>&1 || true
+	fi
+done
 log "deployed ${target:0:7}"
 exit 0
 }

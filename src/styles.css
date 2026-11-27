@@ -28,6 +28,8 @@
   --color-gold: #c9a227; /* the TV's next-prayer tile; used sparingly */
   --color-on-gold: #0f2a23;
   --color-gold-soft: #f5ebcb;
+  --color-gold-hover: #d8b23a;
+  --color-eyebrow: #7a5f0c; /* gold dark enough to read on cream and white */
 
   --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
 }
@@ -64,16 +66,36 @@
     @apply inline-flex h-12 items-center justify-center gap-2 rounded-xl px-5 font-bold whitespace-nowrap transition-colors;
   }
   .btn-gold {
-    @apply bg-gold text-on-gold hover:bg-gold-soft;
-  }
-  .btn-brand {
-    @apply bg-brand text-on-brand hover:bg-brand-2;
+    @apply bg-gold text-on-gold hover:bg-gold-hover;
   }
   .btn-ghost-on-brand {
     @apply border border-on-brand-muted/40 text-on-brand hover:bg-brand-2;
   }
   .btn-ghost {
     @apply border border-line text-ink hover:bg-card;
+  }
+  .btn-line {
+    @apply border-[1.5px] border-ink text-ink hover:bg-canvas;
+  }
+  /* the small gold label over each section's heading */
+  .eyebrow {
+    @apply mb-2.5 text-sm font-bold text-eyebrow;
+  }
+  /* the plans' feature lists: a gold tick per line, a grey dot for a limit */
+  .check-list li {
+    @apply flex gap-2.5;
+  }
+  .check-list li::before {
+    @apply mt-0.5 size-[18px] shrink-0 rounded-full bg-gold bg-center bg-no-repeat;
+    content: "";
+    background-size: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f2a23' stroke-width='3'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E");
+  }
+  .check-list li.is-limit {
+    @apply text-ink-muted;
+  }
+  .check-list li.is-limit::before {
+    @apply bg-line bg-none;
   }
   /* the inquiry form's fields */
   .field-label {

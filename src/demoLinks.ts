@@ -21,7 +21,7 @@ export function applyDemoLinks(root: ParentNode, urls: DemoUrls) {
     link.hidden = !url
     if (url) link.href = url
   }
-  // tabs.ts sets src from data-src once the frame's panel shows, so the demo loads on demand
+  // demo.ts sets src from data-src once the visitor starts the demo, so it loads on demand
   for (const frame of root.querySelectorAll<HTMLIFrameElement>('iframe[data-demo-frame]')) {
     const url = urls[frame.dataset.demoFrame as keyof DemoUrls]
     if (url) frame.dataset.src = url

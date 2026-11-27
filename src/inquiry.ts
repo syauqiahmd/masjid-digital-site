@@ -53,14 +53,21 @@ export function setupInquiryForm(root: ParentNode, url: string, send: typeof fet
     event.preventDefault()
     if (button?.disabled) return
 
+    // fields of the plan not picked are disabled, so they are left out and sent empty
     const data = new FormData(form)
     const text = (name: string) => String(data.get(name) ?? '')
+    const whole = (name: string) => Number(text(name).replace(/\D/g, '')) || 0
     const body = {
+      mosque_name: text('mosque_name'),
+      plan: text('plan'),
+      subdomain: text('subdomain'),
+      domain: text('domain'),
+      donation: whole('donation'),
       full_name: text('full_name'),
       phone: text('phone'),
       domicile: text('domicile'),
-      reason: text('reason'),
       source: text('source'),
+      notes: text('notes'),
       consent: data.get('consent') !== null,
       website: text('website'),
     }

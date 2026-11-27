@@ -4,464 +4,484 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0f3d33" />
-    <title>Masjid Digital: layar TV masjid yang diatur dari HP pengurus</title>
+    <title>Masjid Digital: layar jadwal sholat dan kas masjid, diatur dari HP pengurus</title>
     <meta
       name="description"
-      content="Jadwal sholat metode Kemenag RI, hitung mundur iqamah, slide kegiatan, dan running text di layar TV masjid. Pengurus mengatur semuanya dari HP, dan semua TV berubah dalam hitungan detik."
+      content="Jadwal sholat metode Kemenag RI, hitung mundur iqamah, slide kegiatan, running text, dan kas masjid di layar TV. Gratis untuk semua masjid, open source, diatur dari HP pengurus."
     />
     <meta property="og:title" content="Masjid Digital" />
     <meta
       property="og:description"
-      content="Layar TV masjid yang diatur dari HP pengurus: jadwal sholat, iqamah, slide, dan pengumuman."
+      content="Layar jadwal sholat dan kas masjid, diatur dari HP pengurus. Gratis untuk semua masjid."
     />
     <meta property="og:type" content="website" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
-  <body>
+  <body class="overflow-x-clip">
     <a href="#isi" class="focus:bg-gold focus:text-on-gold sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2 focus:font-bold">Langsung ke isi</a>
 
     <header class="bg-brand text-on-brand sticky top-0 z-40">
-      <div class="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
-        <a href="/" class="flex shrink-0 items-center gap-2.5 font-extrabold tracking-tight">
+      <div class="mx-auto flex h-[68px] max-w-[1290px] items-center gap-5 px-[max(5vw,16px)]">
+        <a href="#isi" class="flex shrink-0 items-center gap-2.5 text-lg font-extrabold">
           <img src="/favicon.svg" alt="" width="32" height="32" />
           Masjid Digital
         </a>
+        <nav
+          id="menu"
+          aria-label="Utama"
+          class="max-lg:border-brand-2 max-lg:bg-brand max-lg:absolute max-lg:inset-x-0 max-lg:top-[68px] max-lg:hidden max-lg:border-t max-lg:px-[max(5vw,16px)] max-lg:pb-4 lg:ml-auto"
+        >
+          <ul class="flex flex-col gap-1 py-2 text-sm font-semibold lg:flex-row lg:gap-6 lg:py-0">
+            <li><a class="text-on-brand-muted hover:text-on-brand block py-2" href="#fitur">Fitur</a></li>
+            <li data-demo-only><a class="text-on-brand-muted hover:text-on-brand block py-2" href="#demo">Demo</a></li>
+            <li><a class="text-on-brand-muted hover:text-on-brand block py-2" href="#harga">Harga</a></li>
+            <li><a class="text-on-brand-muted hover:text-on-brand block py-2" href="#transparansi">Server bersama</a></li>
+            <li><a class="text-on-brand-muted hover:text-on-brand block py-2" href="#faq">Tanya jawab</a></li>
+            <li><a class="text-on-brand-muted hover:text-on-brand block py-2" href="/docs/">Dokumentasi</a></li>
+          </ul>
+        </nav>
         <button
           type="button"
-          class="border-on-brand-muted/40 ml-auto rounded-lg border px-3 py-1.5 text-sm font-semibold md:hidden"
+          class="border-on-brand/35 ml-auto min-h-11 rounded-[10px] border px-3.5 font-bold lg:hidden"
           data-menu-toggle
           aria-expanded="false"
           aria-controls="menu"
         >
           Menu
         </button>
-        <nav
-          id="menu"
-          aria-label="Utama"
-          class="max-md:border-brand-2 max-md:bg-brand max-md:absolute max-md:inset-x-0 max-md:top-16 max-md:hidden max-md:border-t max-md:px-4 max-md:pb-5 md:ml-auto md:flex md:items-center md:gap-6"
-        >
-          <ul class="flex flex-col gap-1 py-3 text-sm font-semibold md:flex-row md:gap-6 md:py-0">
-            <li><a class="text-on-brand-muted hover:text-on-brand block py-2" href="#layar-tv">Layar TV</a></li>
-            <li><a class="text-on-brand-muted hover:text-on-brand block py-2" href="#panel">Panel pengurus</a></li>
-            <li><a class="text-on-brand-muted hover:text-on-brand block py-2" href="#cara-pasang">Cara pasang</a></li>
-            <li><a class="text-on-brand-muted hover:text-on-brand block py-2" href="/docs/">Dokumentasi</a></li>
-            <li><a class="text-on-brand-muted hover:text-on-brand block py-2" href="#daftar">Daftar</a></li>
-          </ul>
-          <a data-demo-only href="#demo" class="btn btn-gold h-10 text-sm max-md:w-full">Coba demo</a>
-        </nav>
+        <a class="btn btn-ghost-on-brand h-[42px] px-3.5 text-sm" href="https://github.com/faruq-rahmadani/masjid-digital" aria-label="Masjid Digital di GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.770 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.180a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.050.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z" /></svg>
+          <span class="max-lg:hidden">GitHub</span>
+        </a>
+        <a class="btn btn-gold h-[42px] px-3.5 text-sm max-sm:hidden" href="#daftar" data-plan="gratis">Daftar gratis</a>
       </div>
     </header>
 
     <main id="isi">
-      <!-- Hero: the TV itself, switching through its real modes -->
-      <section class="bg-brand text-on-brand pb-16 sm:pb-24">
-        <div class="mx-auto max-w-6xl px-4 pt-12 sm:px-6 sm:pt-16">
-          <h1 class="max-w-3xl text-4xl leading-[1.08] font-extrabold tracking-tight text-balance sm:text-6xl">
-            Layar TV masjid yang diatur dari HP pengurus
-          </h1>
-          <p class="text-on-brand-muted mt-5 max-w-2xl text-lg leading-relaxed">
-            Jadwal sholat dihitung otomatis dengan metode Kemenag RI. Layar berganti sendiri ke adzan,
-            hitung mundur iqamah, dan mode sholat. Pengumuman yang Anda simpan tampil di semua TV dalam
-            hitungan detik.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a data-demo-only href="#demo" class="btn btn-gold">Coba demo</a>
-            <a href="/docs/" class="btn btn-ghost-on-brand">Baca dokumentasi</a>
+      <!-- Hero: the TV with the admin's phone resting on its corner; the TV switches through its real modes -->
+      <section class="bg-brand text-on-brand px-[max(5vw,16px)] pt-16 pb-[clamp(80px,9vw,110px)]">
+        <div class="mx-auto grid max-w-[1200px] items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+          <div>
+            <span class="text-gold-soft border-gold-soft/35 inline-block rounded-full border px-3 py-1.5 text-[13px] font-bold">Gratis untuk semua masjid · Open source</span>
+            <h1 class="mt-5 text-[clamp(36px,5vw,54px)] leading-[1.06] font-extrabold tracking-[-0.02em] text-balance">Layar jadwal sholat dan kas masjid, diatur dari HP pengurus.</h1>
+            <p class="text-on-brand-muted mt-5 max-w-[34em] text-lg">
+              Semua TV di masjid berganti mode sendiri dari adzan, iqamah, sampai sholat. Pengurus
+              cukup ubah dari HP, layar terupdate dalam hitungan detik.
+            </p>
+            <div class="mt-[30px] flex flex-wrap gap-3">
+              <a class="btn btn-gold" href="#daftar" data-plan="gratis">Buat masjidkamu.masjidyuk.com</a>
+              <a data-demo-only class="btn btn-ghost-on-brand" href="#demo">Coba demo</a>
+            </div>
+            <p class="text-on-brand-muted mt-[18px] text-sm">Tanpa kartu kredit. Tanpa pasang aplikasi di TV.</p>
           </div>
 
-          <div data-tabs class="mt-14">
-            <figure>
-              <div class="bg-brand-deep ring-on-brand/10 rounded-[1.75rem] p-2.5 shadow-2xl ring-1 shadow-black/40 sm:p-4">
-                <div class="overflow-hidden rounded-2xl">
+          <div data-tabs data-tabs-autoplay="5000">
+            <figure class="relative pb-[30px]">
+              <div class="bg-brand-deep rounded-[18px] p-3 shadow-[0_30px_60px_rgba(0,0,0,.35)]">
+                <div class="overflow-hidden rounded-lg">
                   <div role="tabpanel" id="mode-normal" aria-labelledby="tab-normal">
-                    <img src="/screenshots/tv.png" width="1920" height="1080" class="block h-auto w-full" alt="Layar TV tampilan utama: jam besar, tanggal Masehi dan Hijriah, slide kajian, jadwal tujuh waktu dengan Dzuhur disorot emas sebagai sholat berikutnya, dan running text di bawah." />
+                    <img src="/screenshots/tv.png" width="1920" height="1080" class="block aspect-video h-auto w-full object-cover" alt="Layar TV tampilan utama: jam besar, tanggal Masehi dan Hijriah, slide kajian, jadwal tujuh waktu dengan Dzuhur disorot emas sebagai sholat berikutnya, dan running text di bawah." />
                   </div>
                   <div role="tabpanel" id="mode-adzan" aria-labelledby="tab-adzan" hidden>
-                    <img src="/screenshots/tv-adzan.png" width="1920" height="1080" loading="lazy" class="block h-auto w-full" alt="Layar adzan: tulisan telah masuk waktu, nama sholat, jamnya, dan iqamah dalam beberapa menit." />
+                    <img src="/screenshots/tv-adzan.png" width="1920" height="1080" loading="lazy" class="block aspect-video h-auto w-full object-cover" alt="Layar adzan: tulisan telah masuk waktu, nama sholat, jamnya, dan iqamah dalam beberapa menit." />
                   </div>
                   <div role="tabpanel" id="mode-iqamah" aria-labelledby="tab-iqamah" hidden>
-                    <img src="/screenshots/tv-iqamah.png" width="1920" height="1080" loading="lazy" class="block h-auto w-full" alt="Layar hitung mundur iqamah dengan angka besar, garis sisa waktu, dan pengingat merapatkan shaf serta mematikan HP." />
+                    <img src="/screenshots/tv-iqamah.png" width="1920" height="1080" loading="lazy" class="block aspect-video h-auto w-full object-cover" alt="Layar hitung mundur iqamah dengan angka besar, garis sisa waktu, dan pengingat merapatkan shaf serta mematikan HP." />
                   </div>
                   <div role="tabpanel" id="mode-sholat" aria-labelledby="tab-sholat" hidden>
-                    <img src="/screenshots/tv-sholat.png" width="1920" height="1080" loading="lazy" class="block h-auto w-full" alt="Layar redup saat sholat berlangsung, hanya tulisan kecil dan jam." />
+                    <img src="/screenshots/tv-sholat.png" width="1920" height="1080" loading="lazy" class="block aspect-video h-auto w-full object-cover" alt="Layar redup saat sholat berlangsung, hanya tulisan kecil dan jam." />
                   </div>
                   <div role="tabpanel" id="mode-jumat" aria-labelledby="tab-jumat" hidden>
-                    <img src="/screenshots/tv-jumat.png" width="1920" height="1080" loading="lazy" class="block h-auto w-full" alt="Layar Jumat: waktu sholat Jumat, hitung mundur adzan, nama khatib, imam, muadzin, dan tema khutbah." />
+                    <img src="/screenshots/tv-jumat.png" width="1920" height="1080" loading="lazy" class="block aspect-video h-auto w-full object-cover" alt="Layar Jumat: waktu sholat Jumat, hitung mundur adzan, nama khatib, imam, muadzin, dan tema khutbah." />
                   </div>
                 </div>
+              </div>
+              <div class="bg-brand-deep absolute -right-1.5 -bottom-6 w-[clamp(96px,22%,150px)] rounded-3xl p-1.5 shadow-[0_20px_40px_rgba(0,0,0,.4)]">
+                <img src="/screenshots/home.png" width="780" height="1688" class="block h-auto w-full rounded-[18px]" alt="Beranda panel pengurus di HP" />
               </div>
               <figcaption class="sr-only">Pilih mode di bawah untuk melihat tampilan layar TV.</figcaption>
             </figure>
 
             <!-- the mode picker borrows the TV's own prayer tiles; the selected one turns gold like "Berikutnya" -->
-            <div role="tablist" aria-label="Mode layar TV" class="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-5 sm:gap-3">
-              <button type="button" role="tab" id="tab-normal" aria-controls="mode-normal" aria-selected="true" class="group bg-canvas text-ink aria-selected:bg-gold aria-selected:text-on-gold rounded-2xl px-4 py-3.5 text-left">
-                <span class="block text-base font-extrabold">Tampilan utama</span>
-                <span class="text-ink-muted group-aria-selected:text-on-gold/80 mt-0.5 block text-sm leading-snug">Jam, jadwal hari ini, slide, running text</span>
-              </button>
-              <button type="button" role="tab" id="tab-adzan" aria-controls="mode-adzan" aria-selected="false" tabindex="-1" class="group bg-canvas text-ink aria-selected:bg-gold aria-selected:text-on-gold rounded-2xl px-4 py-3.5 text-left">
-                <span class="block text-base font-extrabold">Adzan</span>
-                <span class="text-ink-muted group-aria-selected:text-on-gold/80 mt-0.5 block text-sm leading-snug">Tepat saat masuk waktu</span>
-              </button>
-              <button type="button" role="tab" id="tab-iqamah" aria-controls="mode-iqamah" aria-selected="false" tabindex="-1" class="group bg-canvas text-ink aria-selected:bg-gold aria-selected:text-on-gold rounded-2xl px-4 py-3.5 text-left">
-                <span class="block text-base font-extrabold">Iqamah</span>
-                <span class="text-ink-muted group-aria-selected:text-on-gold/80 mt-0.5 block text-sm leading-snug">Hitung mundur besar ke iqamah</span>
-              </button>
-              <button type="button" role="tab" id="tab-sholat" aria-controls="mode-sholat" aria-selected="false" tabindex="-1" class="group bg-canvas text-ink aria-selected:bg-gold aria-selected:text-on-gold rounded-2xl px-4 py-3.5 text-left">
-                <span class="block text-base font-extrabold">Sholat</span>
-                <span class="text-ink-muted group-aria-selected:text-on-gold/80 mt-0.5 block text-sm leading-snug">Layar redup atau gelap total</span>
-              </button>
-              <button type="button" role="tab" id="tab-jumat" aria-controls="mode-jumat" aria-selected="false" tabindex="-1" class="group bg-canvas text-ink aria-selected:bg-gold aria-selected:text-on-gold col-span-2 rounded-2xl px-4 py-3.5 text-left sm:col-span-1">
-                <span class="block text-base font-extrabold">Jumat</span>
-                <span class="text-ink-muted group-aria-selected:text-on-gold/80 mt-0.5 block text-sm leading-snug">Khatib, imam, muadzin, tema khutbah</span>
-              </button>
+            <div role="tablist" aria-label="Mode layar TV" class="mt-10 flex flex-wrap gap-2 pr-[clamp(96px,22%,150px)] max-sm:pr-0">
+              <button type="button" role="tab" id="tab-normal" aria-controls="mode-normal" aria-selected="true" class="bg-brand-2 text-on-brand-muted hover:text-on-brand aria-selected:bg-gold aria-selected:text-on-gold min-h-10 rounded-full px-4 text-sm font-bold">Tampilan utama</button>
+              <button type="button" role="tab" id="tab-adzan" aria-controls="mode-adzan" aria-selected="false" tabindex="-1" class="bg-brand-2 text-on-brand-muted hover:text-on-brand aria-selected:bg-gold aria-selected:text-on-gold min-h-10 rounded-full px-4 text-sm font-bold">Adzan</button>
+              <button type="button" role="tab" id="tab-iqamah" aria-controls="mode-iqamah" aria-selected="false" tabindex="-1" class="bg-brand-2 text-on-brand-muted hover:text-on-brand aria-selected:bg-gold aria-selected:text-on-gold min-h-10 rounded-full px-4 text-sm font-bold">Iqamah</button>
+              <button type="button" role="tab" id="tab-sholat" aria-controls="mode-sholat" aria-selected="false" tabindex="-1" class="bg-brand-2 text-on-brand-muted hover:text-on-brand aria-selected:bg-gold aria-selected:text-on-gold min-h-10 rounded-full px-4 text-sm font-bold">Sholat</button>
+              <button type="button" role="tab" id="tab-jumat" aria-controls="mode-jumat" aria-selected="false" tabindex="-1" class="bg-brand-2 text-on-brand-muted hover:text-on-brand aria-selected:bg-gold aria-selected:text-on-gold min-h-10 rounded-full px-4 text-sm font-bold">Jumat</button>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- What the product promises, in four plain facts -->
-      <section aria-label="Keunggulan" class="border-line border-b">
-        <ul class="mx-auto grid max-w-6xl gap-x-10 gap-y-8 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
-          <li>
-            <h2 class="font-extrabold">Jadwal metode Kemenag RI</h2>
-            <p class="text-ink-muted mt-1.5 text-sm leading-relaxed">Subuh 20°, Isya 18°, dihitung dari lokasi masjid. Tiap waktu bisa dikoreksi sampai 10 menit.</p>
+      <!-- What the product promises, in four plain facts, on a card overlapping the hero -->
+      <section aria-label="Keunggulan" class="px-[max(5vw,16px)]">
+        <ul class="bg-card border-line relative mx-auto -mt-10 grid max-w-[1200px] rounded-[18px] border sm:grid-cols-2 lg:grid-cols-4">
+          <li class="border-line px-6 py-[22px] max-lg:border-b max-sm:last:border-b-0 sm:max-lg:odd:border-r lg:border-r lg:last:border-r-0 sm:max-lg:[&:nth-child(n+3)]:border-b-0">
+            <h2 class="font-bold">Metode Kemenag RI</h2>
+            <p class="text-ink-muted text-sm">Subuh 20°, Isya 18°, dari titik lokasi masjid</p>
           </li>
-          <li>
-            <h2 class="font-extrabold">Berubah dalam hitungan detik</h2>
-            <p class="text-ink-muted mt-1.5 text-sm leading-relaxed">Simpan pengumuman dari HP, dan semua TV di masjid langsung ikut berubah.</p>
+          <li class="border-line px-6 py-[22px] max-lg:border-b max-sm:last:border-b-0 lg:border-r lg:last:border-r-0 sm:max-lg:[&:nth-child(n+3)]:border-b-0">
+            <h2 class="font-bold">Update dalam detik</h2>
+            <p class="text-ink-muted text-sm">Simpan di HP, semua TV langsung berubah</p>
           </li>
-          <li>
-            <h2 class="font-extrabold">TV apa saja yang punya browser</h2>
-            <p class="text-ink-muted mt-1.5 text-sm leading-relaxed">Smart TV, TV box Android, atau mini PC. Tidak perlu memasang aplikasi.</p>
+          <li class="border-line px-6 py-[22px] max-lg:border-b max-sm:last:border-b-0 sm:max-lg:odd:border-r lg:border-r lg:last:border-r-0 sm:max-lg:[&:nth-child(n+3)]:border-b-0">
+            <h2 class="font-bold">TV apa saja</h2>
+            <p class="text-ink-muted text-sm">Smart TV, TV box Android, atau mini PC</p>
           </li>
-          <li>
-            <h2 class="font-extrabold">Tetap jalan saat internet putus</h2>
-            <p class="text-ink-muted mt-1.5 text-sm leading-relaxed">Jam dan jadwal dihitung di TV, jadi layar tetap berganti mode tepat waktu.</p>
+          <li class="border-line px-6 py-[22px] max-lg:border-b max-sm:last:border-b-0 lg:border-r lg:last:border-r-0 sm:max-lg:[&:nth-child(n+3)]:border-b-0">
+            <h2 class="font-bold">Tetap jalan offline</h2>
+            <p class="text-ink-muted text-sm">Jadwal dihitung di TV saat internet putus</p>
           </li>
         </ul>
       </section>
 
-      <!-- The TV in detail -->
-      <section id="layar-tv" class="scroll-mt-16">
-        <div class="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+      <section id="fitur" class="scroll-mt-20 px-[max(5vw,16px)] pt-[clamp(56px,7vw,96px)] pb-10">
+        <div class="mx-auto max-w-[1200px]">
+          <p class="eyebrow">Fitur</p>
+          <h2 class="max-w-[720px] text-[clamp(30px,4vw,40px)] leading-[1.1] font-extrabold text-balance">Satu aplikasi untuk layar TV, takmir, dan bendahara.</h2>
+          <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <li class="bg-card border-line rounded-[18px] border p-7">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4" /></svg>
+              <h3 class="mt-4 text-[19px] font-extrabold">Layar TV otomatis</h3>
+              <p class="text-ink-muted mt-2 text-[15px]">Jam, tanggal Masehi dan Hijriah, jadwal tujuh waktu, hitung mundur, slide, dan running text. Berganti sendiri ke mode adzan, iqamah, dan sholat.</p>
+            </li>
+            <li class="bg-card border-line rounded-[18px] border p-7">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+              <h3 class="mt-4 text-[19px] font-extrabold">Iqamah dan alarm</h3>
+              <p class="text-ink-muted mt-2 text-[15px]">Atur jeda adzan ke iqamah per waktu, lama sholat, layar redup atau gelap total, plus bunyi beep atau bel sebelum iqamah.</p>
+            </li>
+            <li class="bg-card border-line rounded-[18px] border p-7">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg>
+              <h3 class="mt-4 text-[19px] font-extrabold">Petugas Jumat</h3>
+              <p class="text-ink-muted mt-2 text-[15px]">Khatib, imam, muadzin, dan tema khutbah untuk sembilan Jumat ke depan. Petugas terdekat tampil di layar Jumat.</p>
+            </li>
+            <li class="bg-card border-line rounded-[18px] border p-7">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16v12H4zM4 7l2-3h12l2 3M9 12h6" /></svg>
+              <h3 class="mt-4 text-[19px] font-extrabold">Keuangan sesuai syariah</h3>
+              <p class="text-ink-muted mt-2 text-[15px]">Kas Umum, Zakat, Fidyah, dan kas terikat. Foto bukti, tutup buku bulanan, dan dana zakat tidak bisa dipindah ke kas lain.</p>
+            </li>
+            <li class="bg-card border-line rounded-[18px] border p-7">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3" /><path d="M3 20c0-3 3-5 6-5s6 2 6 5M16 5a3 3 0 0 1 0 6M18 15c2 .5 3 2.5 3 5" /></svg>
+              <h3 class="mt-4 text-[19px] font-extrabold">Peran pengurus</h3>
+              <p class="text-ink-muted mt-2 text-[15px]">Super admin, takmir, dan bendahara masing-masing hanya melihat menunya. Setiap perubahan tercatat siapa yang mengubah.</p>
+            </li>
+            <li class="bg-card border-line rounded-[18px] border p-7">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /><path d="M14 14h3v3h-3zM20 14v7M14 20h3" /></svg>
+              <h3 class="mt-4 text-[19px] font-extrabold">Pasang TV pakai QR</h3>
+              <p class="text-ink-muted mt-2 text-[15px]">Buka alamat layar di browser TV, beri nama dari HP. Pantau layar online, muat ulang dari jauh, atau paksa mode saat ada acara.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="jumat-title" class="px-[max(5vw,16px)] pt-10 pb-[clamp(56px,7vw,96px)]">
+        <div class="bg-brand text-on-brand mx-auto grid max-w-[1200px] items-center gap-12 rounded-3xl p-[clamp(28px,4vw,48px)] lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)]">
           <div>
-            <h2 class="text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">Satu layar untuk semua yang perlu diketahui jamaah</h2>
-            <p class="text-ink-muted mt-4 max-w-xl text-lg leading-relaxed">
-              Buka satu alamat di browser TV, dan layar langsung terdaftar. Ukurannya menyesuaikan TV
-              720p sampai 4K.
-            </p>
+            <p class="eyebrow text-gold-soft">Mode Jumat</p>
+            <h2 id="jumat-title" class="text-[clamp(26px,3vw,34px)] leading-[1.1] font-extrabold text-balance">Jamaah tahu siapa khatib hari ini, sebelum masuk masjid.</h2>
+            <p class="text-on-brand-muted mt-4">Sejak pagi hari Jumat, layar menampilkan waktu sholat Jumat, hitung mundur adzan, dan petugasnya. Saat khutbah, layar ikut tenang.</p>
           </div>
-          <dl class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-            <div>
-              <dt class="font-bold">Jam dan tanggal</dt>
-              <dd class="text-ink-muted mt-1 text-sm leading-relaxed">Jam besar mengikuti waktu server, bukan jam TV yang sering melenceng. Tanggal Masehi dan Hijriah.</dd>
-            </div>
-            <div>
-              <dt class="font-bold">Jadwal tujuh waktu</dt>
-              <dd class="text-ink-muted mt-1 text-sm leading-relaxed">Imsak sampai Isya, sholat berikutnya disorot, dan hitung mundur menuju waktunya.</dd>
-            </div>
-            <div>
-              <dt class="font-bold">Slide kegiatan</dt>
-              <dd class="text-ink-muted mt-1 text-sm leading-relaxed">Poster kajian dan kegiatan bergantian dengan durasi masing-masing, sama di semua TV.</dd>
-            </div>
-            <div>
-              <dt class="font-bold">Running text</dt>
-              <dd class="text-ink-muted mt-1 text-sm leading-relaxed">Pengumuman singkat berjalan di bagian bawah layar dengan kecepatan yang bisa diatur.</dd>
-            </div>
-            <div>
-              <dt class="font-bold">Alarm adzan dan iqamah</dt>
-              <dd class="text-ink-muted mt-1 text-sm leading-relaxed">Bunyi beep atau bel saat masuk waktu dan 10 detik sebelum iqamah, volume bisa diatur.</dd>
-            </div>
-            <div>
-              <dt class="font-bold">Kendali jarak jauh</dt>
-              <dd class="text-ink-muted mt-1 text-sm leading-relaxed">Lihat TV mana yang online, gelapkan layar atau paksa mode Jumat, dan muat ulang dari HP.</dd>
-            </div>
-          </dl>
+          <div class="bg-brand-deep rounded-[18px] p-2.5">
+            <img src="/screenshots/tv-jumat.png" width="1920" height="1080" loading="lazy" class="block aspect-video h-auto w-full rounded-lg object-cover" alt="Layar TV mode Jumat dengan khatib, imam, dan muadzin" />
+          </div>
         </div>
       </section>
 
-      <!-- The admin panel, shown as the phone screens it really is -->
-      <section id="panel" class="border-line bg-card scroll-mt-16 border-y">
-        <div class="mx-auto max-w-6xl px-4 pt-20 sm:px-6">
-          <h2 class="max-w-2xl text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">Diatur dari HP, oleh pengurus yang berwenang</h2>
-          <p class="text-ink-muted mt-4 max-w-2xl text-lg leading-relaxed">
-            Panel pengurus dibuat untuk layar HP. Setiap perubahan ditanya konfirmasinya dulu, lalu
-            langsung tampil di TV. Aktivitas terakhir mencatat siapa mengubah apa.
-          </p>
-        </div>
-        <ul aria-label="Halaman panel pengurus" class="flex snap-x snap-mandatory scroll-px-[max(1rem,calc((100vw-72rem)/2+1.5rem))] gap-5 overflow-x-auto px-[max(1rem,calc((100vw-72rem)/2+1.5rem))] pt-10 pb-16">
-          <li class="w-56 shrink-0 snap-start">
-            <img src="/screenshots/home.png" width="780" height="1688" loading="lazy" class="border-brand h-auto w-full rounded-[1.75rem] border-[6px]" alt="Beranda panel pengurus" />
-            <h3 class="mt-4 font-bold">Beranda</h3>
-            <p class="text-ink-muted mt-1 text-sm leading-relaxed">Sholat berikutnya, status layar TV, dan aktivitas terakhir.</p>
-          </li>
-          <li class="w-56 shrink-0 snap-start">
-            <img src="/screenshots/prayer-times.png" width="780" height="1688" loading="lazy" class="border-brand h-auto w-full rounded-[1.75rem] border-[6px]" alt="Halaman waktu sholat dengan pratinjau tujuh hari" />
-            <h3 class="mt-4 font-bold">Waktu sholat</h3>
-            <p class="text-ink-muted mt-1 text-sm leading-relaxed">Pratinjau 7 hari, koreksi per waktu, jadwal mingguan dan jadwal khusus.</p>
-          </li>
-          <li class="w-56 shrink-0 snap-start">
-            <img src="/screenshots/iqamah.png" width="780" height="1688" loading="lazy" class="border-brand h-auto w-full rounded-[1.75rem] border-[6px]" alt="Halaman iqamah dan alarm" />
-            <h3 class="mt-4 font-bold">Iqamah &amp; alarm</h3>
-            <p class="text-ink-muted mt-1 text-sm leading-relaxed">Jeda iqamah, lama sholat, waktu khutbah, bunyi dan volume alarm.</p>
-          </li>
-          <li class="w-56 shrink-0 snap-start">
-            <img src="/screenshots/friday-duties.png" width="780" height="1688" loading="lazy" class="border-brand h-auto w-full rounded-[1.75rem] border-[6px]" alt="Halaman petugas Jumat" />
-            <h3 class="mt-4 font-bold">Petugas Jumat</h3>
-            <p class="text-ink-muted mt-1 text-sm leading-relaxed">Khatib, imam, muadzin, dan tema khutbah untuk Jumat-Jumat ke depan.</p>
-          </li>
-          <li class="w-56 shrink-0 snap-start">
-            <img src="/screenshots/slides.png" width="780" height="1688" loading="lazy" class="border-brand h-auto w-full rounded-[1.75rem] border-[6px]" alt="Halaman slide" />
-            <h3 class="mt-4 font-bold">Slide</h3>
-            <p class="text-ink-muted mt-1 text-sm leading-relaxed">Unggah poster, atur durasi, nyalakan atau matikan, geser untuk mengurutkan.</p>
-          </li>
-          <li class="w-56 shrink-0 snap-start">
-            <img src="/screenshots/running-texts.png" width="780" height="1688" loading="lazy" class="border-brand h-auto w-full rounded-[1.75rem] border-[6px]" alt="Halaman running text" />
-            <h3 class="mt-4 font-bold">Running text</h3>
-            <p class="text-ink-muted mt-1 text-sm leading-relaxed">Pengumuman sampai 200 karakter, urutan, dan kecepatan gulir.</p>
-          </li>
-          <li class="w-56 shrink-0 snap-start">
-            <img src="/screenshots/screens.png" width="780" height="1688" loading="lazy" class="border-brand h-auto w-full rounded-[1.75rem] border-[6px]" alt="Halaman layar TV dengan kode QR" />
-            <h3 class="mt-4 font-bold">Layar TV</h3>
-            <p class="text-ink-muted mt-1 text-sm leading-relaxed">Kode QR untuk memasang TV, status online, mode paksa, dan blokir.</p>
-          </li>
-          <li class="w-56 shrink-0 snap-start">
-            <img src="/screenshots/profile.png" width="780" height="1688" loading="lazy" class="border-brand h-auto w-full rounded-[1.75rem] border-[6px]" alt="Halaman profil masjid dengan peta lokasi" />
-            <h3 class="mt-4 font-bold">Profil masjid</h3>
-            <p class="text-ink-muted mt-1 text-sm leading-relaxed">Nama, alamat, logo, lokasi di peta, dan zona waktu WIB, WITA, atau WIT.</p>
-          </li>
-          <li class="w-56 shrink-0 snap-start">
-            <img src="/screenshots/users.png" width="780" height="1688" loading="lazy" class="border-brand h-auto w-full rounded-[1.75rem] border-[6px]" alt="Halaman pengguna" />
-            <h3 class="mt-4 font-bold">Pengguna</h3>
-            <p class="text-ink-muted mt-1 text-sm leading-relaxed">Tambah pengurus, atur perannya, nonaktifkan, atau atur ulang password.</p>
-          </li>
-        </ul>
-      </section>
+      <!-- The demo, side by side: the real admin panel in a phone, the real TV next to it. Nothing
+           loads until "Mulai demo" (src/demo.ts): each TV opened registers a screen on the demo server. -->
+      <section id="demo" data-demo-only class="scroll-mt-20 px-[max(5vw,16px)] pb-[clamp(56px,7vw,96px)]">
+        <div class="mx-auto max-w-[1200px]">
+          <p class="eyebrow">Coba demo</p>
+          <h2 class="max-w-[720px] text-[clamp(30px,4vw,40px)] leading-[1.1] font-extrabold text-balance">Simpan di HP, lihat TV-nya berubah.</h2>
+          <p class="text-ink-muted mt-3.5 max-w-[62ch] text-[17px]">Panel pengurus dan layar TV di bawah ini aplikasi aslinya, tersambung ke server demo yang sama. Ubah sesuatu di HP, dan TV di sebelahnya ikut berubah dalam hitungan detik.</p>
 
-      <!-- Roles: who sees which menu -->
-      <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <h2 class="max-w-2xl text-3xl font-extrabold tracking-tight text-balance">Setiap pengurus hanya melihat menunya</h2>
-        <div class="border-line bg-card mt-8 overflow-x-auto rounded-2xl border">
-          <table class="w-full min-w-[34rem] text-left text-sm">
-            <thead>
-              <tr class="border-line border-b">
-                <th scope="col" class="px-5 py-3.5 font-bold">Peran</th>
-                <th scope="col" class="px-5 py-3.5 font-bold">Yang bisa dilakukan</th>
-              </tr>
-            </thead>
-            <tbody class="divide-line-soft divide-y">
-              <tr>
-                <th scope="row" class="px-5 py-4 font-semibold whitespace-nowrap">Super admin</th>
-                <td class="text-ink-muted px-5 py-4 leading-relaxed">Semua menu, termasuk menambah pengurus dan mengatur perannya.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="px-5 py-4 font-semibold whitespace-nowrap">Takmir</th>
-                <td class="text-ink-muted px-5 py-4 leading-relaxed">Layar TV, waktu sholat, iqamah, petugas Jumat, slide, running text, dan profil masjid.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="px-5 py-4 font-semibold whitespace-nowrap">Bendahara</th>
-                <td class="text-ink-muted px-5 py-4 leading-relaxed">Keuangan: pemasukan, pengeluaran, pindah dana, kas terikat, dan tutup buku bulanan.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- Installation is a real sequence, so it is numbered -->
-      <section id="cara-pasang" class="bg-brand text-on-brand scroll-mt-16">
-        <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <h2 class="max-w-2xl text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">Dari server sampai layar menyala</h2>
-          <ol class="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            <li>
-              <span aria-hidden="true" class="bg-gold text-on-gold flex size-10 items-center justify-center rounded-full font-extrabold">1</span>
-              <h3 class="mt-4 text-lg font-bold">Pasang di server</h3>
-              <p class="text-on-brand-muted mt-1.5 text-sm leading-relaxed">Satu pemasangan untuk satu masjid. Bisa langsung jalan dengan SQLite, atau memakai PostgreSQL.</p>
-            </li>
-            <li>
-              <span aria-hidden="true" class="bg-gold text-on-gold flex size-10 items-center justify-center rounded-full font-extrabold">2</span>
-              <h3 class="mt-4 text-lg font-bold">Isi profil masjid</h3>
-              <p class="text-on-brand-muted mt-1.5 text-sm leading-relaxed">Tandai lokasi masjid di peta. Jadwal sholat langsung dihitung dari titik itu.</p>
-            </li>
-            <li>
-              <span aria-hidden="true" class="bg-gold text-on-gold flex size-10 items-center justify-center rounded-full font-extrabold">3</span>
-              <h3 class="mt-4 text-lg font-bold">Buka alamat di TV</h3>
-              <p class="text-on-brand-muted mt-1.5 text-sm leading-relaxed">Scan kode QR dari menu Layar TV, atau ketik alamatnya di browser TV, lalu beri nama layarnya.</p>
-            </li>
-            <li>
-              <span aria-hidden="true" class="bg-gold text-on-gold flex size-10 items-center justify-center rounded-full font-extrabold">4</span>
-              <h3 class="mt-4 text-lg font-bold">Ajak pengurus lain</h3>
-              <p class="text-on-brand-muted mt-1.5 text-sm leading-relaxed">Tambahkan takmir dan bendahara dengan perannya masing-masing.</p>
-            </li>
-          </ol>
-          <a href="/docs/#memulai" class="decoration-gold mt-12 inline-block font-semibold underline decoration-2 underline-offset-4">Panduan pemasangan lengkap</a>
-        </div>
-      </section>
-
-      <section class="mx-auto max-w-6xl px-4 pt-20 sm:px-6">
-        <div class="border-gold bg-gold-soft/50 rounded-3xl border-2 p-6 sm:p-10">
-          <h2 class="text-2xl font-extrabold tracking-tight">Keuangan yang mengikuti aturan zakat</h2>
-          <p class="text-ink-muted mt-3 max-w-2xl leading-relaxed">
-            Uang dicatat per akun (tunai dan rekening) sekaligus per kas: Kas Umum, Zakat Mal, Zakat
-            Fitrah, Fidyah, dan kas terikat seperti Renovasi Atap. Dana zakat hanya keluar ke 8 asnaf,
-            infaq terikat hanya dipindah dengan kerelaan donatur, dan tidak ada saldo yang bisa minus.
-            Bendahara menutup buku tiap bulan, dan ringkasan kas yang dipilih tampil bergiliran di
-            layar TV.
-          </p>
-        </div>
-      </section>
-
-      <section id="tanya-jawab" class="mx-auto max-w-6xl scroll-mt-16 px-4 py-20 sm:px-6">
-        <h2 class="text-3xl font-extrabold tracking-tight">Pertanyaan yang sering muncul</h2>
-        <div class="divide-line border-line mt-8 divide-y border-y">
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-start justify-between gap-6 font-bold [&::-webkit-details-marker]:hidden">
-              Apakah perlu memasang aplikasi di TV?
-              <span aria-hidden="true" class="text-gold shrink-0 text-xl leading-none transition-transform group-open:rotate-45">+</span>
-            </summary>
-            <p class="text-ink-muted mt-3 leading-relaxed">Tidak. Cukup buka alamat layar di browser TV, TV box, atau mini PC. Ketuk layar sekali untuk tampilan penuh.</p>
-          </details>
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-start justify-between gap-6 font-bold [&::-webkit-details-marker]:hidden">
-              Bagaimana kalau internet di masjid mati?
-              <span aria-hidden="true" class="text-gold shrink-0 text-xl leading-none transition-transform group-open:rotate-45">+</span>
-            </summary>
-            <p class="text-ink-muted mt-3 leading-relaxed">Jam dan jadwal dihitung di TV, jadi layar tetap berganti ke adzan, iqamah, dan sholat tepat waktu. Pengumuman baru masuk lagi begitu internet tersambung. Di menu Layar TV, layar itu tampil Offline.</p>
-          </details>
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-start justify-between gap-6 font-bold [&::-webkit-details-marker]:hidden">
-              Jadwal masjid kami sedikit berbeda dari jadwal Kemenag. Bisa disesuaikan?
-              <span aria-hidden="true" class="text-gold shrink-0 text-xl leading-none transition-transform group-open:rotate-45">+</span>
-            </summary>
-            <p class="text-ink-muted mt-3 leading-relaxed">Bisa. Koreksi tiap waktu sampai 10 menit lebih awal atau lebih lambat, tetapkan jam tiap minggu (misalnya Dzuhur hari Jumat), atau ubah satu tanggal saja.</p>
-          </details>
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-start justify-between gap-6 font-bold [&::-webkit-details-marker]:hidden">
-              Berapa TV yang bisa dipakai?
-              <span aria-hidden="true" class="text-gold shrink-0 text-xl leading-none transition-transform group-open:rotate-45">+</span>
-            </summary>
-            <p class="text-ink-muted mt-3 leading-relaxed">Sampai 50 layar untuk satu masjid. Semuanya menampilkan hal yang sama pada saat yang sama.</p>
-          </details>
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-start justify-between gap-6 font-bold [&::-webkit-details-marker]:hidden">
-              Kenapa alarm di TV tidak berbunyi?
-              <span aria-hidden="true" class="text-gold shrink-0 text-xl leading-none transition-transform group-open:rotate-45">+</span>
-            </summary>
-            <p class="text-ink-muted mt-3 leading-relaxed">Browser baru mengizinkan suara setelah layar disentuh sekali. Ketuk layar TV setelah menyala; TV menampilkan pengingatnya selama suara belum aktif.</p>
-          </details>
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-start justify-between gap-6 font-bold [&::-webkit-details-marker]:hidden">
-              Bisa dipakai untuk beberapa masjid sekaligus?
-              <span aria-hidden="true" class="text-gold shrink-0 text-xl leading-none transition-transform group-open:rotate-45">+</span>
-            </summary>
-            <p class="text-ink-muted mt-3 leading-relaxed">Satu pemasangan melayani satu masjid. Untuk masjid lain, pasang satu lagi dengan datanya sendiri.</p>
-          </details>
-        </div>
-      </section>
-
-      <!-- The demo: pick the panel (the real app in a phone frame) or the TV (the real display, 16:9) -->
-      <section id="demo" data-demo-only class="bg-brand text-on-brand scroll-mt-16">
-        <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Coba demo</h2>
-          <p class="text-on-brand-muted mt-3 max-w-2xl text-lg leading-relaxed">
-            Pilih yang ingin dicoba. Ubah pengumuman di panel pengurus, lalu lihat layar TV-nya ikut
-            berubah.
-          </p>
-
-          <div data-tabs class="mt-10 grid gap-8 lg:grid-cols-[17rem_1fr] lg:gap-12">
-            <div role="tablist" aria-label="Pilih demo" aria-orientation="vertical" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 lg:self-start">
-              <button type="button" role="tab" id="tab-demo-panel" aria-controls="demo-panel" aria-selected="true" class="group bg-brand-2 aria-selected:bg-gold aria-selected:text-on-gold rounded-2xl p-5 text-left">
-                <span class="block text-lg font-extrabold">Panel pengurus</span>
-                <span class="text-on-brand-muted group-aria-selected:text-on-gold/80 mt-1 block text-sm leading-snug">Aplikasi di HP untuk mengatur jadwal, iqamah, slide, dan layar TV.</span>
-              </button>
-              <button type="button" role="tab" id="tab-demo-tv" aria-controls="demo-tv" aria-selected="false" tabindex="-1" class="group bg-brand-2 aria-selected:bg-gold aria-selected:text-on-gold rounded-2xl p-5 text-left">
-                <span class="block text-lg font-extrabold">Layar TV</span>
-                <span class="text-on-brand-muted group-aria-selected:text-on-gold/80 mt-1 block text-sm leading-snug">Tampilan di TV masjid, berganti mode sendiri mengikuti jadwal.</span>
-              </button>
-            </div>
-
-            <div>
-              <div role="tabpanel" id="demo-panel" aria-labelledby="tab-demo-panel" class="flex flex-col gap-8 md:flex-row md:items-start">
-                <!-- the app is built for a 390 px phone, so on a computer it runs inside a phone frame -->
-                <div class="border-brand-deep bg-canvas shrink-0 overflow-hidden rounded-[2.75rem] border-[10px] shadow-2xl shadow-black/40 max-md:hidden">
-                  <iframe data-demo-frame="panel" loading="lazy" title="Demo panel pengurus" class="block h-[720px] w-[390px]"></iframe>
-                </div>
-                <div class="max-w-sm">
-                  <h3 class="text-xl font-bold">Dibuat untuk layar HP</h3>
-                  <p class="text-on-brand-muted mt-2 leading-relaxed">
-                    <span class="max-md:hidden">Di komputer, panel tampil di dalam bingkai HP. Masuk dengan akun demo, lalu coba ubah running text atau slide.</span>
-                    <span class="md:hidden">Buka panel di HP ini, masuk dengan akun demo, lalu coba ubah running text atau slide.</span>
-                  </p>
-                  <a data-demo="panel" href="/docs/" target="_blank" rel="noopener" class="btn btn-gold mt-6">Buka panel pengurus</a>
-                </div>
+          <div data-demo-stage class="mt-9 grid items-start gap-8 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-10">
+            <!-- the app is built for a 390 px phone, so on a computer it runs inside a phone frame -->
+            <figure class="max-lg:hidden">
+              <div class="border-brand-deep bg-canvas relative box-content h-[720px] w-[390px] overflow-hidden rounded-[2.75rem] border-[10px] shadow-2xl shadow-black/25">
+                <img data-demo-placeholder src="/screenshots/login.png" width="780" height="1688" loading="lazy" class="block h-full w-full object-cover object-top" alt="Halaman masuk panel pengurus" />
+                <iframe data-demo-frame="panel" hidden title="Demo panel pengurus" class="block h-full w-full"></iframe>
               </div>
+              <figcaption class="text-ink-muted mt-3 text-center text-sm font-semibold">Panel pengurus (HP)</figcaption>
+            </figure>
 
-              <div role="tabpanel" id="demo-tv" aria-labelledby="tab-demo-tv" hidden>
-                <div class="bg-brand-deep rounded-[1.75rem] p-2.5 shadow-2xl shadow-black/40 sm:p-4">
-                  <iframe data-demo-frame="tv" loading="lazy" title="Demo layar TV" allow="fullscreen" class="block aspect-video w-full rounded-2xl"></iframe>
+            <div>
+              <figure>
+                <div class="bg-brand-deep relative rounded-[18px] p-2.5 shadow-2xl shadow-black/25 sm:p-3">
+                  <img data-demo-placeholder src="/screenshots/tv.png" width="1920" height="1080" loading="lazy" class="block aspect-video h-auto w-full rounded-lg object-cover" alt="Layar TV demo" />
+                  <iframe data-demo-frame="tv" hidden title="Demo layar TV" allow="fullscreen" class="block aspect-video w-full rounded-lg"></iframe>
                 </div>
-                <a data-demo="tv" href="/docs/" target="_blank" rel="noopener" class="btn btn-gold mt-6">Buka layar TV di tab baru</a>
+                <figcaption class="text-ink-muted mt-3 text-center text-sm font-semibold">Layar TV</figcaption>
+              </figure>
+
+              <div class="bg-card border-line mt-6 rounded-[20px] border p-6">
+                <button type="button" data-demo-start class="btn btn-gold w-full sm:w-auto">Mulai demo</button>
+                <p data-demo-placeholder class="text-ink-muted mt-3 text-sm">Memuat panel pengurus dan layar TV asli dari server demo.</p>
+
+                <div data-demo-running hidden>
+                  <!-- filled from VITE_DEMO_PHONE / VITE_DEMO_PASSWORD (src/demo.ts); shown once the demo starts, and only when they are set -->
+                  <div data-demo-account hidden class="bg-canvas rounded-2xl p-4">
+                    <p class="text-sm font-bold">Akun demo</p>
+                    <dl class="mt-2 grid gap-2 text-[15px]">
+                      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <dt class="text-ink-muted w-28">Nomor HP</dt>
+                        <dd class="font-mono font-bold" data-demo-account-phone></dd>
+                        <dd class="ml-auto"><button type="button" data-copy="phone" class="btn btn-ghost h-9 px-3 text-sm">Salin</button></dd>
+                      </div>
+                      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <dt class="text-ink-muted w-28">Password</dt>
+                        <dd class="font-mono font-bold" data-demo-account-password></dd>
+                        <dd class="ml-auto"><button type="button" data-copy="password" class="btn btn-ghost h-9 px-3 text-sm">Salin</button></dd>
+                      </div>
+                    </dl>
+                    <p class="text-ink-muted mt-2 text-[13px]">Salin, lalu tempel di halaman masuk panel pengurus.</p>
+                  </div>
+                  <h3 class="mt-5 text-lg font-extrabold">Coba begini</h3>
+                  <ol class="text-ink-muted mt-3 flex flex-col gap-2.5 text-[15px]">
+                    <li class="flex gap-3"><b aria-hidden="true" class="bg-gold-soft text-ink grid size-6 shrink-0 place-items-center rounded-full text-xs">1</b><span><span class="max-lg:hidden">Di HP sebelah kiri, masuk</span><span class="lg:hidden">Buka panel pengurus, masuk</span> dengan akun demo di atas.</span></li>
+                    <li class="flex gap-3"><b aria-hidden="true" class="bg-gold-soft text-ink grid size-6 shrink-0 place-items-center rounded-full text-xs">2</b>Buka menu Running Text, ubah atau tambah pengumuman, lalu simpan.</li>
+                    <li class="flex gap-3"><b aria-hidden="true" class="bg-gold-soft text-ink grid size-6 shrink-0 place-items-center rounded-full text-xs">3</b>Lihat tulisan berjalan di bawah layar TV ikut berubah. Coba juga Slide atau Petugas Jumat.</li>
+                  </ol>
+                </div>
+
+                <div class="mt-5 flex flex-wrap gap-3">
+                  <a data-demo="panel" href="/docs/" target="_blank" rel="noopener" class="btn btn-line h-11 text-sm lg:hidden">Buka panel pengurus <span aria-hidden="true">↗</span></a>
+                  <a data-demo="tv" href="/docs/" target="_blank" rel="noopener" class="btn btn-ghost h-11 text-sm">Buka layar TV di tab baru <span aria-hidden="true">↗</span></a>
+                </div>
+                <p class="text-ink-muted mt-4 text-[13px]">Data demo direset berkala, jadi bebas dicoba. Ketuk layar TV sekali agar alarm bisa berbunyi.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <!-- Inquiry form: sent to the team's Telegram by the API (POST /api/public/v1/inquiries), not stored -->
-      <section id="daftar" class="scroll-mt-16">
-        <div class="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_32rem] lg:gap-16">
+
+      <section id="harga" class="scroll-mt-20 px-[max(5vw,16px)] pb-[clamp(56px,7vw,96px)]">
+        <div class="mx-auto max-w-[1200px]">
+          <div class="mx-auto max-w-[680px] text-center">
+            <p class="eyebrow">Pilihan pemakaian</p>
+            <h2 class="text-[clamp(30px,4vw,40px)] leading-[1.1] font-extrabold text-balance">Semua fitur sama. Bedanya hanya di mana dan bagaimana dijalankan.</h2>
+          </div>
+          <div class="mt-12 grid items-stretch gap-5 lg:grid-cols-3">
+            <div class="bg-card border-line flex flex-col rounded-[22px] border p-8">
+              <h3 class="text-xl font-extrabold">Gratis</h3>
+              <p class="text-ink-muted mt-1.5 text-sm">Untuk masjid yang ingin langsung pakai.</p>
+              <p class="text-ink-muted mt-6"><b class="text-ink text-[44px] font-extrabold whitespace-nowrap">Rp0</b> selamanya</p>
+              <div class="bg-canvas mt-5 rounded-[10px] px-3.5 py-3 text-sm font-semibold [overflow-wrap:anywhere]">masjidkamu.<em class="text-eyebrow not-italic">masjidyuk.com</em></div>
+              <ul class="check-list mt-6 flex grow flex-col gap-3 text-[15px]">
+                <li>Semua fitur layar TV dan panel</li>
+                <li>Subdomain di masjidyuk.com</li>
+                <li>Dihosting di server bersama</li>
+                <li>Update otomatis</li>
+                <li class="is-limit">Batas wajar: 5 layar, 20 slide</li>
+              </ul>
+              <a class="btn btn-line mt-7 w-full" href="#daftar" data-plan="gratis">Daftar gratis</a>
+            </div>
+            <div class="bg-card border-line flex flex-col rounded-[22px] border p-8">
+              <h3 class="text-xl font-extrabold">Self Hosted</h3>
+              <p class="text-ink-muted mt-1.5 text-sm">Untuk masjid yang punya relawan IT.</p>
+              <p class="text-ink-muted mt-6"><b class="text-ink text-[44px] font-extrabold whitespace-nowrap">Rp0</b> open source</p>
+              <div class="bg-brand-deep text-on-brand-muted mt-5 rounded-[10px] px-3.5 py-3 font-mono text-[13px]">docker compose up -d</div>
+              <ul class="check-list mt-6 flex grow flex-col gap-3 text-[15px]">
+                <li>Server dan domain milik sendiri</li>
+                <li>Data sepenuhnya di tangan masjid</li>
+                <li>SQLite tanpa setelan, atau PostgreSQL</li>
+                <li>Panduan pasang lengkap di README</li>
+                <li class="is-limit">Butuh VPS atau server sendiri</li>
+              </ul>
+              <a class="btn btn-line mt-7 w-full" href="https://github.com/faruq-rahmadani/masjid-digital">Lihat di GitHub</a>
+            </div>
+            <div class="bg-brand text-on-brand border-brand relative flex flex-col rounded-[22px] border p-8 shadow-[0_20px_40px_rgba(15,61,51,.25)]">
+              <span class="bg-gold text-on-gold absolute -top-[13px] left-8 rounded-full px-3 py-[5px] text-xs font-extrabold">Bantu masjid lain</span>
+              <h3 class="text-xl font-extrabold">Donatur</h3>
+              <p class="text-on-brand-muted mt-1.5 text-sm">Domain sendiri, sambil menghidupi server bersama.</p>
+              <p class="text-on-brand-muted mt-6">mulai <b class="text-on-brand text-[44px] font-extrabold whitespace-nowrap">Rp1 jt</b> / tahun</p>
+              <div class="bg-brand-2 mt-5 rounded-[10px] px-3.5 py-3 text-sm font-semibold">masjidkamu.id</div>
+              <ul class="check-list mt-6 flex grow flex-col gap-3 text-[15px]">
+                <li>Semua yang ada di Gratis</li>
+                <li>Domain sendiri, kami yang urus</li>
+                <li>Sisa dana masuk deposit server bersama</li>
+                <li>Boleh lebih dari Rp1 jt, semua kelebihan ke deposit</li>
+                <li>Nama masjid di daftar donatur (opsional)</li>
+                <li>Laporan pemakaian dana tiap tahun</li>
+              </ul>
+              <a class="btn btn-gold mt-7 w-full" href="#daftar" data-plan="donatur">Jadi donatur</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- The shared server's money: the numbers come from GET /api/public/v1/transparency (server/) -->
+      <section id="transparansi" data-transparency class="scroll-mt-20 px-[max(5vw,16px)] pb-[clamp(56px,7vw,96px)]">
+        <div class="bg-card border-line mx-auto grid max-w-[1200px] gap-12 rounded-3xl border p-[clamp(28px,4vw,48px)] lg:grid-cols-2">
           <div>
-            <h2 class="max-w-xl text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">Ingin memakai Masjid Digital di masjid Anda?</h2>
-            <p class="text-ink-muted mt-4 max-w-xl text-lg leading-relaxed">
-              Isi formulir ini. Tim kami akan menghubungi Anda lewat WhatsApp untuk membantu pemasangan
-              dan menjawab pertanyaan.
+            <p class="eyebrow">Ke mana Rp1 juta itu pergi</p>
+            <h2 class="text-[clamp(26px,3vw,32px)] leading-[1.1] font-extrabold text-balance">Satu masjid donatur ikut menanggung server untuk masjid lain.</h2>
+            <p class="text-ink-muted mt-4 max-w-[62ch] text-[17px]">Setelah biaya domain, sisanya masuk ke deposit server bersama. Donasi di atas Rp1 jt seluruh kelebihannya masuk deposit. Deposit ini yang membuat paket Gratis bisa tetap gratis.</p>
+            <div class="mt-7 flex h-[18px] overflow-hidden rounded-full" role="img" aria-label="Rp1 juta: 25 persen domain, 75 persen deposit">
+              <div class="bg-gold w-1/4"></div>
+              <div class="bg-brand w-3/4"></div>
+            </div>
+            <dl class="mt-3.5 flex flex-col gap-2 text-[15px]">
+              <div class="flex items-center gap-2.5"><span aria-hidden="true" class="bg-gold size-3 shrink-0 rounded-[3px]"></span><dt>Domain .id atau .com</dt><dd class="ml-auto font-bold whitespace-nowrap">± Rp250.000</dd></div>
+              <div class="flex items-center gap-2.5"><span aria-hidden="true" class="bg-brand size-3 shrink-0 rounded-[3px]"></span><dt>Deposit server bersama</dt><dd class="ml-auto font-bold whitespace-nowrap">± Rp750.000</dd></div>
+            </dl>
+          </div>
+          <div class="grid grid-cols-1 content-start gap-4 sm:grid-cols-2">
+            <div class="bg-canvas rounded-2xl p-[22px]">
+              <span class="text-ink-muted text-[13px] font-semibold">Saldo deposit</span>
+              <b data-stat="deposit" class="mt-1.5 block text-[clamp(20px,2.4vw,26px)] font-extrabold whitespace-nowrap">—</b>
+            </div>
+            <div class="bg-canvas rounded-2xl p-[22px]">
+              <span class="text-ink-muted text-[13px] font-semibold">Biaya server / bulan <span class="font-normal">(termasuk PPN)</span></span>
+              <b data-stat="monthly-cost" class="mt-1.5 block text-[clamp(20px,2.4vw,26px)] font-extrabold whitespace-nowrap">—</b>
+            </div>
+            <div class="bg-canvas rounded-2xl p-[22px] sm:col-span-2">
+              <span class="text-ink-muted text-[13px] font-semibold">Insyaallah server aman sampai</span>
+              <b data-stat="safe-until" class="mt-1.5 block text-[clamp(20px,2.4vw,26px)] font-extrabold whitespace-nowrap">—</b>
+            </div>
+            <p data-transparency-ready hidden class="text-ink-muted text-[13px] sm:col-span-2">
+              Saldo dan biaya diambil langsung dari tagihan server, diperbarui <span data-stat="updated-at"></span>.
             </p>
-            <p class="text-ink-muted mt-6 max-w-xl text-sm leading-relaxed">
-              Data Anda hanya dipakai untuk menghubungi Anda dan tidak ditampilkan di mana pun.
-            </p>
+            <p data-transparency-error hidden class="text-ink-muted text-[13px] sm:col-span-2">Angka server bersama sedang tidak bisa dimuat. Coba buka lagi halaman ini nanti.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="scroll-mt-20 px-[max(5vw,16px)] pb-[clamp(56px,7vw,96px)]">
+        <div class="mx-auto max-w-[860px]">
+          <h2 class="text-center text-[clamp(30px,4vw,40px)] leading-[1.1] font-extrabold text-balance">Pertanyaan yang sering muncul</h2>
+          <div class="mt-9 flex flex-col gap-3">
+            <details open class="group bg-card border-line rounded-[14px] border px-6">
+              <summary class="flex cursor-pointer list-none justify-between gap-4 py-5 font-bold [&::-webkit-details-marker]:hidden">
+                Apa beda Gratis dan Donatur selain domain?
+                <span aria-hidden="true" class="text-ink-muted text-[22px] leading-none group-open:hidden">+</span><span aria-hidden="true" class="text-ink-muted hidden text-[22px] leading-none group-open:inline">−</span>
+              </summary>
+              <p class="text-ink-muted mb-5">Fiturnya sama persis. Donatur mendapat domain sendiri, dan sisa dananya dipakai untuk menanggung server masjid-masjid yang memakai paket Gratis.</p>
+            </details>
+            <details class="group bg-card border-line rounded-[14px] border px-6">
+              <summary class="flex cursor-pointer list-none justify-between gap-4 py-5 font-bold [&::-webkit-details-marker]:hidden">
+                Kalau paket Gratis, data masjid kami aman?
+                <span aria-hidden="true" class="text-ink-muted text-[22px] leading-none group-open:hidden">+</span><span aria-hidden="true" class="text-ink-muted hidden text-[22px] leading-none group-open:inline">−</span>
+              </summary>
+              <p class="text-ink-muted mb-5">Aman. Data tiap masjid dipisah, hanya pengurus masjid itu yang bisa membukanya, dan server dibackup setiap hari.</p>
+            </details>
+            <details class="group bg-card border-line rounded-[14px] border px-6">
+              <summary class="flex cursor-pointer list-none justify-between gap-4 py-5 font-bold [&::-webkit-details-marker]:hidden">
+                Bisa pindah dari Gratis ke Self Hosted nanti?
+                <span aria-hidden="true" class="text-ink-muted text-[22px] leading-none group-open:hidden">+</span><span aria-hidden="true" class="text-ink-muted hidden text-[22px] leading-none group-open:inline">−</span>
+              </summary>
+              <p class="text-ink-muted mb-5">Bisa. Ekspor data dari panel pengurus, lalu impor ke instalasi Self Hosted. Subdomain lama tetap dialihkan ke alamat baru selama 30 hari.</p>
+            </details>
+            <details class="group bg-card border-line rounded-[14px] border px-6">
+              <summary class="flex cursor-pointer list-none justify-between gap-4 py-5 font-bold [&::-webkit-details-marker]:hidden">
+                TV apa yang dibutuhkan?
+                <span aria-hidden="true" class="text-ink-muted text-[22px] leading-none group-open:hidden">+</span><span aria-hidden="true" class="text-ink-muted hidden text-[22px] leading-none group-open:inline">−</span>
+              </summary>
+              <p class="text-ink-muted mb-5">TV apa saja yang punya browser: smart TV, TV box Android, atau mini PC yang tersambung internet. Tidak perlu memasang aplikasi.</p>
+            </details>
+            <details class="group bg-card border-line rounded-[14px] border px-6">
+              <summary class="flex cursor-pointer list-none justify-between gap-4 py-5 font-bold [&::-webkit-details-marker]:hidden">
+                Bagaimana kalau internet di masjid mati?
+                <span aria-hidden="true" class="text-ink-muted text-[22px] leading-none group-open:hidden">+</span><span aria-hidden="true" class="text-ink-muted hidden text-[22px] leading-none group-open:inline">−</span>
+              </summary>
+              <p class="text-ink-muted mb-5">Jam dan jadwal dihitung di TV, jadi layar tetap berganti ke adzan, iqamah, dan sholat tepat waktu. Pengumuman baru masuk lagi begitu internet tersambung.</p>
+            </details>
+            <details class="group bg-card border-line rounded-[14px] border px-6">
+              <summary class="flex cursor-pointer list-none justify-between gap-4 py-5 font-bold [&::-webkit-details-marker]:hidden">
+                Boleh donasi lebih dari Rp1 juta, atau tanpa domain?
+                <span aria-hidden="true" class="text-ink-muted text-[22px] leading-none group-open:hidden">+</span><span aria-hidden="true" class="text-ink-muted hidden text-[22px] leading-none group-open:inline">−</span>
+              </summary>
+              <p class="text-ink-muted mb-5">Boleh dua-duanya. Rp1 jt adalah minimal untuk dapat domain sendiri, tidak ada batas atas, dan semua kelebihannya masuk deposit. Jamaah atau masjid yang tidak butuh domain juga bisa donasi berapa saja langsung ke deposit.</p>
+            </details>
+            <details class="group bg-card border-line rounded-[14px] border px-6">
+              <summary class="flex cursor-pointer list-none justify-between gap-4 py-5 font-bold [&::-webkit-details-marker]:hidden">
+                Bagaimana proses konfirmasinya?
+                <span aria-hidden="true" class="text-ink-muted text-[22px] leading-none group-open:hidden">+</span><span aria-hidden="true" class="text-ink-muted hidden text-[22px] leading-none group-open:inline">−</span>
+              </summary>
+              <p class="text-ink-muted mb-5">Setelah form dikirim, tim kami menghubungi nomor WhatsApp yang dicantumkan untuk memastikan data masjid. Untuk paket Donatur, sekalian membahas domain dan cara donasi.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Inquiry form: sent to the team's Telegram by the site's API (POST /api/public/v1/inquiries), not stored -->
+      <section id="daftar" class="scroll-mt-20 px-[max(5vw,16px)] pb-[clamp(56px,7vw,96px)]">
+        <div class="bg-brand text-on-brand mx-auto grid max-w-[1200px] grid-cols-1 items-start gap-12 rounded-3xl p-[clamp(24px,4vw,56px)] max-sm:px-4 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)]">
+          <div>
+            <p class="eyebrow text-gold-soft">Daftar</p>
+            <h2 class="text-[clamp(30px,4vw,40px)] leading-[1.1] font-extrabold text-balance">Pasang di masjidmu hari ini.</h2>
+            <p class="text-on-brand-muted mt-3.5 text-[17px]">Isi data singkat ini, lalu tim kami menghubungi nomor WhatsApp yang dicantumkan untuk konfirmasi.</p>
+            <ol class="text-on-brand-muted mt-7 flex flex-col gap-3.5 text-[15px]">
+              <li class="flex gap-3"><b aria-hidden="true" class="bg-brand-2 text-gold-soft grid size-7 shrink-0 place-items-center rounded-full text-[13px]">1</b>Isi form dan pilih paket</li>
+              <li class="flex gap-3"><b aria-hidden="true" class="bg-brand-2 text-gold-soft grid size-7 shrink-0 place-items-center rounded-full text-[13px]">2</b>Kami hubungi via WhatsApp untuk konfirmasi data masjid (dan domain serta donasi untuk paket Donatur)</li>
+              <li class="flex gap-3"><b aria-hidden="true" class="bg-brand-2 text-gold-soft grid size-7 shrink-0 place-items-center rounded-full text-[13px]">3</b>Akun panel aktif, isi profil masjid dan pasang layar TV</li>
+            </ol>
+            <p class="text-on-brand-muted mt-7 text-sm">Data Anda hanya dipakai untuk menghubungi Anda dan tidak ditampilkan di mana pun.</p>
           </div>
 
-          <div class="border-line bg-card rounded-3xl border p-6 sm:p-8">
-            <form data-inquiry class="grid gap-5">
+          <div class="bg-card text-ink rounded-[18px] p-7 max-sm:p-5">
+            <form data-inquiry class="flex flex-col gap-4">
+              <fieldset class="min-w-0">
+                <legend class="field-label">Paket</legend>
+                <div class="mt-2 grid gap-2.5 sm:grid-cols-2">
+                  <label class="border-line has-checked:border-ink has-checked:bg-canvas flex cursor-pointer items-start gap-2.5 rounded-xl border p-3.5 has-checked:border-2 has-checked:p-[13px]">
+                    <input type="radio" name="plan" value="gratis" checked class="accent-brand mt-1 size-[18px] shrink-0" />
+                    <span><strong class="block text-[15px]">Gratis</strong><span class="text-ink-muted text-[13px]">Subdomain masjidyuk.com</span></span>
+                  </label>
+                  <label class="border-line has-checked:border-ink has-checked:bg-canvas flex cursor-pointer items-start gap-2.5 rounded-xl border p-3.5 has-checked:border-2 has-checked:p-[13px]">
+                    <input type="radio" name="plan" value="donatur" class="accent-brand mt-1 size-[18px] shrink-0" />
+                    <span><strong class="block text-[15px]">Donatur</strong><span class="text-ink-muted text-[13px]">Mulai Rp1 jt / tahun</span></span>
+                  </label>
+                </div>
+              </fieldset>
               <div class="grid gap-1.5">
-                <label for="inquiry-name" class="field-label">Nama lengkap</label>
-                <input id="inquiry-name" name="full_name" required maxlength="100" autocomplete="name" class="field-input" />
-              </div>
-              <div class="grid gap-1.5">
-                <label for="inquiry-phone" class="field-label">Nomor ponsel (WhatsApp)</label>
-                <input
-                  id="inquiry-phone"
-                  name="phone"
-                  type="tel"
-                  inputmode="tel"
-                  required
-                  maxlength="20"
-                  autocomplete="tel"
-                  placeholder="0812 3456 7890"
-                  class="field-input"
-                />
-              </div>
-              <div class="grid gap-1.5">
-                <label for="inquiry-domicile" class="field-label">Domisili</label>
-                <input id="inquiry-domicile" name="domicile" required maxlength="100" placeholder="Kota atau kabupaten, mis. Banjarbaru" class="field-input" />
-              </div>
-              <div class="grid gap-1.5">
-                <label for="inquiry-reason" class="field-label">Kenapa Anda tertarik?</label>
-                <textarea
-                  id="inquiry-reason"
-                  name="reason"
-                  required
-                  maxlength="1000"
-                  rows="4"
-                  placeholder="Mis. ingin menampilkan jadwal sholat dan pengumuman di TV masjid kami"
-                  class="field-input h-auto py-3"
-                ></textarea>
+                <label for="inquiry-mosque" class="field-label">Nama masjid</label>
+                <input id="inquiry-mosque" name="mosque_name" required maxlength="100" autocomplete="organization" placeholder="Masjid Al-Ikhlas" class="field-input" />
               </div>
 
-              <fieldset class="border-line-soft grid gap-1.5 border-t pt-5">
-                <legend class="text-ink-muted float-left mb-3 w-full text-xs font-bold tracking-widest uppercase">Informasi lainnya</legend>
-                <label for="inquiry-source" class="field-label">Dari mana Anda mengenal Masjid Digital?</label>
+              <!-- one plan's fields at a time; the other's are disabled, so neither checked nor sent (src/plan.ts) -->
+              <fieldset data-plan-fields="gratis" class="grid min-w-0 gap-1.5">
+                <label for="inquiry-subdomain" class="field-label">Alamat <span class="text-ink-muted font-semibold">(opsional)</span></label>
+                <div class="border-line focus-within:outline-gold bg-canvas/40 flex h-12 items-center rounded-xl border px-4 focus-within:outline-3 focus-within:outline-offset-2">
+                  <input id="inquiry-subdomain" name="subdomain" maxlength="63" autocapitalize="none" spellcheck="false" placeholder="alikhlas" class="placeholder:text-ink-muted/70 min-w-0 flex-1 bg-transparent text-base outline-none" />
+                  <span class="text-ink-muted font-semibold">.masjidyuk.com</span>
+                </div>
+                <p class="text-ink-muted text-[13px]">Kalau namanya sudah dipakai, kami hubungi lewat WhatsApp untuk pilih nama lain.</p>
+              </fieldset>
+              <fieldset data-plan-fields="donatur" hidden disabled class="grid min-w-0 gap-4">
+                <div class="grid gap-1.5">
+                  <label for="inquiry-domain" class="field-label">Domain yang diinginkan <span class="text-ink-muted font-semibold">(opsional)</span></label>
+                  <input id="inquiry-domain" name="domain" maxlength="253" autocapitalize="none" spellcheck="false" placeholder="masjidkamu.id" class="field-input" />
+                  <p class="text-ink-muted text-[13px]">Ketersediaan domain kami cek saat konfirmasi.</p>
+                </div>
+                <div class="grid gap-1.5">
+                  <label for="inquiry-donation" class="field-label">Donasi per tahun</label>
+                  <div class="border-line focus-within:outline-gold bg-canvas/40 flex h-12 items-center gap-2 rounded-xl border px-4 focus-within:outline-3 focus-within:outline-offset-2">
+                    <span class="text-ink-muted font-semibold">Rp</span>
+                    <input id="inquiry-donation" name="donation" required inputmode="numeric" value="1.000.000" pattern="[1-9]\d{0,2}(\.\d{3}){2,3}" title="Minimal Rp1.000.000" class="min-w-0 flex-1 bg-transparent text-base outline-none" />
+                  </div>
+                  <p class="text-ink-muted text-[13px]">Minimal Rp1.000.000. Kelebihannya masuk deposit server bersama.</p>
+                </div>
+              </fieldset>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="grid gap-1.5">
+                  <label for="inquiry-name" class="field-label">Nama pengurus</label>
+                  <input id="inquiry-name" name="full_name" required maxlength="100" autocomplete="name" placeholder="Ahmad" class="field-input" />
+                </div>
+                <div class="grid gap-1.5">
+                  <label for="inquiry-phone" class="field-label">No. WhatsApp</label>
+                  <input id="inquiry-phone" name="phone" type="tel" inputmode="tel" required maxlength="20" autocomplete="tel" placeholder="0812 3456 7890" class="field-input" />
+                </div>
+              </div>
+              <div class="grid gap-1.5">
+                <label for="inquiry-domicile" class="field-label">Kota / kabupaten</label>
+                <input id="inquiry-domicile" name="domicile" required maxlength="100" autocomplete="address-level2" placeholder="Jakarta Selatan" class="field-input" />
+              </div>
+              <div class="grid gap-1.5">
+                <label for="inquiry-source" class="field-label">Dari mana Anda mengenal Masjid Digital? <span class="text-ink-muted font-semibold">(opsional)</span></label>
                 <select id="inquiry-source" name="source" class="field-input">
-                  <option value="">Pilih (opsional)</option>
+                  <option value="">Pilih</option>
                   <option>Pencarian Google</option>
                   <option>Media sosial</option>
                   <option>Pengurus masjid lain</option>
@@ -469,7 +489,11 @@
                   <option>Teman, keluarga, atau kolega</option>
                   <option>Lainnya</option>
                 </select>
-              </fieldset>
+              </div>
+              <div class="grid gap-1.5">
+                <label for="inquiry-notes" class="field-label">Catatan <span class="text-ink-muted font-semibold">(opsional)</span></label>
+                <textarea id="inquiry-notes" name="notes" maxlength="1000" rows="3" placeholder="Mis. ingin dibantu pasang di 2 TV, satu di serambi" class="field-input h-auto py-3"></textarea>
+              </div>
 
               <!-- honeypot: hidden from people, so only bots fill it in; the API drops those -->
               <div aria-hidden="true" class="absolute -left-[9999px] h-px w-px overflow-hidden">
@@ -477,40 +501,47 @@
                 <input id="inquiry-website" name="website" tabindex="-1" autocomplete="off" />
               </div>
 
-              <label class="flex items-start gap-3 text-sm leading-relaxed">
-                <input type="checkbox" name="consent" required class="accent-brand mt-0.5 size-5 shrink-0" />
+              <label class="flex items-start gap-3 text-sm">
+                <input type="checkbox" name="consent" required class="accent-brand mt-0.5 size-[18px] shrink-0" />
                 <span>Ya, saya setuju dihubungi tim Masjid Digital untuk tindak lanjut.</span>
               </label>
 
               <p data-inquiry-status role="alert" hidden class="bg-gold-soft text-ink rounded-xl px-4 py-3 text-sm font-semibold"></p>
 
-              <button type="submit" class="btn btn-brand w-full disabled:cursor-wait disabled:opacity-70">Kirim</button>
+              <button type="submit" class="btn btn-gold mt-1 w-full disabled:cursor-wait disabled:opacity-70">Kirim pendaftaran</button>
+              <p class="text-ink-muted text-center text-[13px]">Kami hubungi via WhatsApp dalam 1x24 jam di hari kerja.</p>
+              <p class="text-ink-muted text-center text-[13px]">Mau pasang sendiri? <a class="text-ink font-semibold underline" href="https://github.com/faruq-rahmadani/masjid-digital">Panduan Self Hosted</a></p>
             </form>
 
-            <div data-inquiry-success hidden tabindex="-1" class="py-6 text-center outline-none">
-              <p class="text-2xl font-extrabold tracking-tight">Terima kasih, <span data-inquiry-name></span>.</p>
-              <p class="text-ink-muted mt-3 leading-relaxed">Pesan Anda sudah kami terima. Kami akan menghubungi Anda lewat WhatsApp.</p>
+            <div data-inquiry-success hidden tabindex="-1" class="px-2 py-6 text-center outline-none">
+              <span aria-hidden="true" class="bg-gold mx-auto mb-4 grid size-14 place-items-center rounded-full">
+                <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0f2a23" stroke-width="3"><path d="M5 12l5 5 9-10" /></svg>
+              </span>
+              <p class="text-[22px] font-extrabold">Terima kasih, <span data-inquiry-name></span>.</p>
+              <p class="text-ink-muted mt-3">Pendaftaran Anda sudah kami terima. Kami akan menghubungi Anda lewat WhatsApp.</p>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="bg-brand-deep text-on-brand-muted">
-      <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <a href="/" class="text-on-brand flex items-center gap-2.5 font-extrabold">
-          <img src="/favicon.svg" alt="" width="28" height="28" />
-          Masjid Digital
-        </a>
+    <footer class="bg-brand-deep text-on-brand-muted px-[max(5vw,16px)] py-12 text-sm">
+      <div class="mx-auto flex max-w-[1200px] flex-wrap justify-between gap-x-8 gap-y-6">
+        <div>
+          <p class="text-on-brand text-[17px] font-extrabold">Masjid Digital</p>
+          <p class="mt-1.5">masjidyuk.com · open source di GitHub</p>
+        </div>
         <nav aria-label="Bawah">
-          <ul class="flex flex-wrap gap-x-6 gap-y-2">
+          <ul class="flex flex-wrap gap-5">
+            <li><a class="hover:text-on-brand" href="#fitur">Fitur</a></li>
+            <li data-demo-only><a class="hover:text-on-brand" href="#demo">Demo</a></li>
+            <li><a class="hover:text-on-brand" href="#harga">Harga</a></li>
+            <li><a class="hover:text-on-brand" href="#transparansi">Laporan server bersama</a></li>
             <li><a class="hover:text-on-brand" href="/docs/">Dokumentasi</a></li>
-            <li><a class="hover:text-on-brand" href="#tanya-jawab">Tanya jawab</a></li>
-            <li><a class="hover:text-on-brand" href="#daftar">Daftar</a></li>
-            <li data-demo-only><a class="hover:text-on-brand" href="#demo">Coba demo</a></li>
+            <li><a class="hover:text-on-brand" href="https://github.com/faruq-rahmadani/masjid-digital">GitHub</a></li>
           </ul>
         </nav>
-        <p>&copy; <span data-year>2026</span> Masjid Digital</p>
+        <p class="w-full">&copy; <span data-year>2026</span> Masjid Digital</p>
       </div>
     </footer>
 
