@@ -1,6 +1,7 @@
-# The public site as one container on an existing Docker network shared with the reverse
-# proxy (PROXY_NETWORK, default "proxy"), reachable there as public-web:80. No ports.
-# Settings come from .env, see deploy/README.md.
+# The public site as two containers: web (Caddy with the built pages) on an existing Docker
+# network shared with the reverse proxy (PROXY_NETWORK, default "proxy"), reachable there as
+# public-web:80, and api (server/) which only web can reach. No ports. Settings come from .env,
+# see deploy/README.md.
 
 name: masjid-public
 
@@ -12,13 +13,33 @@ services:
       args:
         VITE_DEMO_URL: ${VITE_DEMO_URL:-}
         VITE_DEMO_TV_URL: ${VITE_DEMO_TV_URL:-}
+        VITE_DEMO_PHONE: ${VITE_DEMO_PHONE:-}
+        VITE_DEMO_PASSWORD: ${VITE_DEMO_PASSWORD:-}
         VITE_INQUIRY_URL: ${VITE_INQUIRY_URL:-}
+        VITE_TRANSPARENCY_URL: ${VITE_TRANSPARENCY_URL:-}
     restart: unless-stopped
     environment:
-      API_UPSTREAM: ${API_UPSTREAM:?set API_UPSTREAM in .env, e.g. demo-web:80}
+      API_UPSTREAM: api:8080
+    depends_on: [api]
     networks:
+      default:
       proxy:
         aliases: [public-web]
+
+  api:
+    image: masjid-public-api:latest
+    build: ./server
+    restart: unless-stopped
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
+      INQUIRY_ENV_TAG: ${INQUIRY_ENV_TAG:-}
+      IDCLOUDHOST_API_KEY: ${IDCLOUDHOST_API_KEY:-}
+      IDCLOUDHOST_BILLING_ACCOUNT_ID: ${IDCLOUDHOST_BILLING_ACCOUNT_ID:-}
+      TRANSPARENCY_VM_NAMES: ${TRANSPARENCY_VM_NAMES:-}
+      TRANSPARENCY_EXTRA_DEPOSIT: ${TRANSPARENCY_EXTRA_DEPOSIT:-}
+      TRANSPARENCY_CACHE_TTL: ${TRANSPARENCY_CACHE_TTL:-}
+    networks: [default]
 
 networks:
   proxy:

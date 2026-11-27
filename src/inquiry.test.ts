@@ -4,10 +4,15 @@ import { DEFAULT_INQUIRY_URL, inquiryUrl, setupInquiryForm } from './inquiry'
 const render = () => {
   document.body.innerHTML = `
     <form data-inquiry>
+      <input name="mosque_name" value="Masjid Al-Ikhlas" />
+      <input type="radio" name="plan" value="gratis" />
+      <input type="radio" name="plan" value="donatur" checked />
+      <fieldset disabled><input name="subdomain" value="tidak-terkirim" /></fieldset>
+      <fieldset><input name="domain" value="alikhlas.id" /><input name="donation" value="1.500.000" /></fieldset>
       <input name="full_name" value=" Ahmad Fauzi " />
       <input name="phone" value="0812-3456-7890" />
       <input name="domicile" value="Banjarbaru" />
-      <textarea name="reason">Ingin pasang di TV masjid</textarea>
+      <textarea name="notes">Dua TV</textarea>
       <select name="source"><option value="Media sosial" selected>Media sosial</option></select>
       <input type="checkbox" name="consent" checked />
       <input name="website" value="" />
@@ -56,11 +61,16 @@ describe('setupInquiryForm', () => {
     expect(url).toBe('/api/public/v1/inquiries')
     expect(init.method).toBe('POST')
     expect(JSON.parse(String(init.body))).toEqual({
+      mosque_name: 'Masjid Al-Ikhlas',
+      plan: 'donatur',
+      subdomain: '', // the other plan's fields are disabled, so not sent
+      domain: 'alikhlas.id',
+      donation: 1_500_000,
       full_name: ' Ahmad Fauzi ',
       phone: '0812-3456-7890',
       domicile: 'Banjarbaru',
-      reason: 'Ingin pasang di TV masjid',
       source: 'Media sosial',
+      notes: 'Dua TV',
       consent: true,
       website: '',
     })
