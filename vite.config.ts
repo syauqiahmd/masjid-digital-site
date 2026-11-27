@@ -3,13 +3,14 @@
 import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, loadEnv } from 'vite'
+import { seo } from './seo.ts'
 
 const local = (path: string) => fileURLToPath(new URL(path, import.meta.url))
 
 // A static multi-page site: each page is plain HTML (readable by search engines without
 // JavaScript) with a small shared script.
 export default defineConfig(({ mode }) => ({
-  plugins: [tailwindcss()],
+  plugins: [tailwindcss(), seo(loadEnv(mode, process.cwd(), ''))],
   build: {
     rollupOptions: {
       input: {
